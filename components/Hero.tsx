@@ -112,7 +112,7 @@ export default function Hero() {
               align={"center"}
               w={"100%"}
               h={"100%"}
-              src={"/moto_fachada.jpg"}
+              src={"/Images/moto_fachada.jpg"}
             />
           </Box>
         </Flex>
