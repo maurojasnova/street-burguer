@@ -54,7 +54,7 @@ import {
           spacing={4}
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}>
-          <Text>© 2023 Street Burguer. Todos los derechos reservados</Text>
+          <Text>© {new Date().getFullYear()} Street Burguer. Todos los derechos reservados</Text>
           <Stack direction={'row'} spacing={6}>
             <SocialButton label={'Twitter'} href={'#'}>
               <FaTwitter />

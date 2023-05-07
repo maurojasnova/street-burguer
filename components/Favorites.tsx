@@ -46,11 +46,12 @@ export default function Favorites() {
 
   return (
     <Stack>
-      <Stack spacing={0} align={"center"} textAlign="center" py="12">
+      <Stack spacing={0} align={"center"} textAlign="center" py="4">
         <Heading
           lineHeight={1.1}
           fontWeight={600}
           fontSize={{ base: "2xl", sm: "3xl", lg: "5xl" }}
+          py="4"
         >
           Los favoritos
         </Heading>

@@ -86,8 +86,8 @@ export default function Testimonials() {
   return (
     <Box bg={useColorModeValue("gray.100", "gray.700")}>
       <Container maxW={"7xl"} py={16} as={Stack} spacing={12}>
-        <Stack spacing={0} align={"center"}>
-          <Heading>Nuestros clientes hablan</Heading>
+        <Stack spacing={0} align={"center"} textAlign="center">
+          <Heading py="4">Nuestros clientes hablan</Heading>
           <Text>
             Nosotros llevamos una fusión gastronómico por todo Villena y sus
             alrededores

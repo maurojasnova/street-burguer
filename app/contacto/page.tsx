@@ -26,15 +26,15 @@ import {
   MdFacebook,
   MdOutlineEmail,
 } from "react-icons/md";
-import { BsGithub, BsDiscord, BsPerson } from "react-icons/bs";
+import { BsInstagram, BsPerson } from "react-icons/bs";
 
 export default function Contact() {
   return (
-    <Container bg="#9DC4FB" maxW="full" mt={0} centerContent overflow="hidden">
+    <Container bg="white" maxW="full" mt={0} centerContent overflow="hidden">
       <Flex>
         <Box
-          bg="#02054B"
-          color="white"
+          bg="orange.300"
+          color="black"
           borderRadius="lg"
           m={{ sm: 4, md: 16, lg: 10 }}
           p={{ sm: 5, md: 5, lg: 16 }}
@@ -43,44 +43,40 @@ export default function Contact() {
             <Wrap spacing={{ base: 20, sm: 3, md: 5, lg: 20 }}>
               <WrapItem>
                 <Box>
-                  <Heading>Contact</Heading>
-                  <Text mt={{ sm: 3, md: 3, lg: 5 }} color="gray.500">
-                    Fill up the form below to contact
+                  <Heading>Contáctanos</Heading>
+                  <Text mt={{ sm: 3, md: 3, lg: 5 }}>
+                    Llena el siguiente formulario
                   </Text>
                   <Box py={{ base: 5, sm: 5, md: 8, lg: 10 }}>
-                    <VStack pl={0} spacing={3} alignItems="flex-start">
+                    <VStack pl={0} spacing={3} alignItems="flex-start" justify={"center"}>
                       <Button
                         size="md"
                         height="48px"
                         width="200px"
                         variant="ghost"
-                        color="#DCE2FF"
                         _hover={{ border: "2px solid #1C6FEB" }}
                         leftIcon={<MdPhone color="#1970F1" size="20px" />}
-                      >
-                        +91-988888888
+                      >+34 965 80 08 30
                       </Button>
                       <Button
                         size="md"
                         height="48px"
                         width="200px"
                         variant="ghost"
-                        color="#DCE2FF"
                         _hover={{ border: "2px solid #1C6FEB" }}
                         leftIcon={<MdEmail color="#1970F1" size="20px" />}
                       >
-                        hello@abc.com
+                        strburguer@gmail.com
                       </Button>
                       <Button
                         size="md"
                         height="48px"
                         width="200px"
                         variant="ghost"
-                        color="#DCE2FF"
                         _hover={{ border: "2px solid #1C6FEB" }}
                         leftIcon={<MdLocationOn color="#1970F1" size="20px" />}
                       >
-                        Karnavati, India
+                        Av Constitución, Villena
                       </Button>
                     </VStack>
                   </Box>
@@ -89,6 +85,7 @@ export default function Contact() {
                     spacing={5}
                     px={5}
                     alignItems="flex-start"
+                    justify={"center"}
                   >
                     <IconButton
                       aria-label="facebook"
@@ -99,20 +96,12 @@ export default function Contact() {
                       icon={<MdFacebook size="28px" />}
                     />
                     <IconButton
-                      aria-label="github"
+                      aria-label="instagram"
                       variant="ghost"
                       size="lg"
                       isRound={true}
                       _hover={{ bg: "#0D74FF" }}
-                      icon={<BsGithub size="28px" />}
-                    />
-                    <IconButton
-                      aria-label="discord"
-                      variant="ghost"
-                      size="lg"
-                      isRound={true}
-                      _hover={{ bg: "#0D74FF" }}
-                      icon={<BsDiscord size="28px" />}
+                      icon={<BsInstagram size="28px" />}
                     />
                   </HStack>
                 </Box>
