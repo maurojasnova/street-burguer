@@ -30,12 +30,18 @@ import {
 import { BsInstagram, BsPerson } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 
+interface IFormInputs {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export default function Contact() {
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm<IFormInputs>();
 
   function onSubmit(values) {
     return new Promise<void>((resolve) => {
@@ -134,7 +140,7 @@ export default function Contact() {
                   <Box m={8} color="#0B0E3F">
                     <form onSubmit={handleSubmit(onSubmit)}>
                       <VStack spacing={5}>
-                        <FormControl>
+                        <FormControl isInvalid={Boolean(errors.name)}>
                           <FormLabel>Your Name</FormLabel>
                           <InputGroup borderColor="#E0E1E7">
                             <InputLeftElement pointerEvents="none">
@@ -154,8 +160,11 @@ export default function Contact() {
                               })}
                             />
                           </InputGroup>
+                          <FormErrorMessage>
+                            {errors.name && errors.name.message}
+                          </FormErrorMessage>
                         </FormControl>
-                        <FormControl>
+                        <FormControl isInvalid={Boolean(errors.email)}>
                           <FormLabel>Mail</FormLabel>
                           <InputGroup borderColor="#E0E1E7">
                             <InputLeftElement pointerEvents="none">
@@ -174,8 +183,11 @@ export default function Contact() {
                               })}
                             />
                           </InputGroup>
+                          <FormErrorMessage>
+                            {errors.email && errors.email.message}
+                          </FormErrorMessage>
                         </FormControl>
-                        <FormControl>
+                        <FormControl isInvalid={Boolean(errors.message)}>
                           <FormLabel>Message</FormLabel>
                           <Textarea
                             borderColor="gray.300"
@@ -192,6 +204,9 @@ export default function Contact() {
                               },
                             })}
                           />
+                          <FormErrorMessage>
+                            {errors.message && errors.message.message}
+                          </FormErrorMessage>
                         </FormControl>
                         <FormControl float="right">
                           <Button
@@ -200,6 +215,7 @@ export default function Contact() {
                             color="white"
                             _hover={{}}
                             type="submit"
+                            isLoading={isSubmitting}
                           >
                             Send Message
                           </Button>

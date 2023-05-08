@@ -7,7 +7,7 @@ import {
     useColorModeValue,
     VisuallyHidden,
   } from '@chakra-ui/react';
-  import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
+  import { FaFacebook, FaInstagram} from 'react-icons/fa';
   import { ReactNode } from 'react';
   
   const SocialButton = ({
@@ -57,14 +57,8 @@ import {
           align={{ base: 'center', md: 'center' }}>
           <Text>© {new Date().getFullYear()} Street Burguer. Todos los derechos reservados</Text>
           <Stack direction={'row'} spacing={6}>
-            <SocialButton label={'Twitter'} href={'#'}>
-              <FaTwitter />
-            </SocialButton>
-            <SocialButton label={'YouTube'} href={'#'}>
-              <FaYoutube />
-            </SocialButton>
-            <SocialButton label={'Instagram'} href={'#'}>
-              <FaInstagram />
+            <SocialButton label={'Facebook'} href={'https://www.facebook.com/profile.php?id=100063743344193'}>
+              <FaFacebook />
             </SocialButton>
           </Stack>
         </Container>
