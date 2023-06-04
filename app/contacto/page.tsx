@@ -19,6 +19,7 @@ import {
   InputGroup,
   InputLeftElement,
   Textarea,
+  Link,
 } from "@chakra-ui/react";
 import {
   MdPhone,
@@ -27,7 +28,7 @@ import {
   MdFacebook,
   MdOutlineEmail,
 } from "react-icons/md";
-import { BsInstagram, BsPerson } from "react-icons/bs";
+import { BsPerson } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 
 interface IFormInputs {
@@ -43,34 +44,33 @@ export default function Contact() {
     formState: { errors, isSubmitting },
   } = useForm<IFormInputs>();
 
-  function onSubmit(values) {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 3000);
+  const onSubmit = async (data) => {
+    fetch("/api/submit-contact", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
-  }
+    alert(JSON.stringify(data));
+  };
 
   return (
-    <Container bg="white" maxW="full" mt={0} centerContent overflow="hidden">
+    <Container bg="white" maxW="full"  centerContent overflow="hidden">
       <Flex>
         <Box
           bg="orange.300"
-          color="black"
+          color="gray.800"
           borderRadius="lg"
-          m={{ sm: 4, md: 16, lg: 10 }}
+          m={{ sm: 16, md: 16, lg: 10 }}
           p={{ sm: 5, md: 5, lg: 16 }}
         >
           <Box p={4}>
-            <Wrap spacing={{ base: 20, sm: 3, md: 5, lg: 20 }} align={"center"}>
+            <Wrap spacing={{ base: 20, sm: 5, md: 5, lg: 20 }} align={"center"}>
               <WrapItem>
                 <Box>
                   <Heading>Contáctanos</Heading>
-                  <Text mt={{ sm: 3, md: 3, lg: 5 }}>
-                    Llena el siguiente formulario
-                  </Text>
-                  <Box py={{ base: 5, sm: 5, md: 8, lg: 10 }}>
+                  <Box py={{ base: 3, sm: 4, md: 4, lg: 10 }}>
                     <VStack
                       pl={0}
                       spacing={3}
@@ -81,9 +81,11 @@ export default function Contact() {
                         size="md"
                         height="48px"
                         // width="200px"
+                        bg="orange.300"
+                        _hover={{ bg: "orange.300" }}
                         variant="ghost"
-                        _hover={{ border: "2px solid #1C6FEB" }}
-                        leftIcon={<MdPhone color="#1970F1" size="20px" />}
+                        cursor="default"
+                        leftIcon={<MdPhone color="#000000" size="20px" />}
                       >
                         +34 965 80 08 30
                       </Button>
@@ -91,9 +93,11 @@ export default function Contact() {
                         size="md"
                         height="48px"
                         // width="200px"
+                        bg="orange.300"
+                        _hover={{ bg: "orange.300" }}
                         variant="ghost"
-                        _hover={{ border: "2px solid #1C6FEB" }}
-                        leftIcon={<MdEmail color="#1970F1" size="20px" />}
+                        cursor="default"
+                        leftIcon={<MdEmail color="#000000" size="20px" />}
                       >
                         strburguer@gmail.com
                       </Button>
@@ -101,47 +105,25 @@ export default function Contact() {
                         size="md"
                         height="48px"
                         // width="200px"
+                        bg="orange.300"
+                        _hover={{ bg: "orange.300" }}
                         variant="ghost"
-                        _hover={{ border: "2px solid #1C6FEB" }}
-                        leftIcon={<MdLocationOn color="#1970F1" size="20px" />}
+                        cursor="default"
+                        leftIcon={<MdLocationOn color="#000000" size="20px" />}
                       >
                         Av Constitución, Villena
                       </Button>
                     </VStack>
                   </Box>
-                  <HStack
-                    mt={{ lg: 10, md: 10 }}
-                    spacing={5}
-                    px={5}
-                    alignItems="flex-start"
-                    justify={"center"}
-                  >
-                    <IconButton
-                      aria-label="facebook"
-                      variant="ghost"
-                      size="lg"
-                      isRound={true}
-                      _hover={{ bg: "#0D74FF" }}
-                      icon={<MdFacebook size="28px" />}
-                    />
-                    <IconButton
-                      aria-label="instagram"
-                      variant="ghost"
-                      size="lg"
-                      isRound={true}
-                      _hover={{ bg: "#0D74FF" }}
-                      icon={<BsInstagram size="28px" />}
-                    />
-                  </HStack>
                 </Box>
               </WrapItem>
               <WrapItem>
                 <Box bg="white" borderRadius="lg">
-                  <Box m={8} color="#0B0E3F">
+                  <Box m={4} color="#0B0E3F">
                     <form onSubmit={handleSubmit(onSubmit)}>
                       <VStack spacing={5}>
                         <FormControl isInvalid={Boolean(errors.name)}>
-                          <FormLabel>Your Name</FormLabel>
+                          <FormLabel>Tu nombre</FormLabel>
                           <InputGroup borderColor="#E0E1E7">
                             <InputLeftElement pointerEvents="none">
                               <BsPerson color="gray.800" />
@@ -152,10 +134,10 @@ export default function Contact() {
                               size="md"
                               id="name"
                               {...register("name", {
-                                required: "This is required",
+                                required: "Esto es requerido",
                                 minLength: {
                                   value: 4,
-                                  message: "Minimum length should be 4",
+                                  message: "Longitud mínima de 4 caracteres",
                                 },
                               })}
                             />
@@ -165,7 +147,7 @@ export default function Contact() {
                           </FormErrorMessage>
                         </FormControl>
                         <FormControl isInvalid={Boolean(errors.email)}>
-                          <FormLabel>Mail</FormLabel>
+                          <FormLabel>Email</FormLabel>
                           <InputGroup borderColor="#E0E1E7">
                             <InputLeftElement pointerEvents="none">
                               <MdOutlineEmail color="gray.800" />
@@ -175,10 +157,10 @@ export default function Contact() {
                               size="md"
                               id="email"
                               {...register("email", {
-                                required: "This is required",
+                                required: "Esto es requerido",
                                 minLength: {
                                   value: 4,
-                                  message: "Minimum length should be 4",
+                                  message: "Longitud mínima de 4 caracteres",
                                 },
                               })}
                             />
@@ -188,7 +170,7 @@ export default function Contact() {
                           </FormErrorMessage>
                         </FormControl>
                         <FormControl isInvalid={Boolean(errors.message)}>
-                          <FormLabel>Message</FormLabel>
+                          <FormLabel>Mensaje</FormLabel>
                           <Textarea
                             borderColor="gray.300"
                             _hover={{
@@ -197,10 +179,10 @@ export default function Contact() {
                             placeholder="message"
                             id="message"
                             {...register("message", {
-                              required: "This is required",
+                              required: "Esto es requerido",
                               minLength: {
                                 value: 4,
-                                message: "Minimum length should be 4",
+                                message: "Longitud mínima de 4 caracteres",
                               },
                             })}
                           />
@@ -211,13 +193,16 @@ export default function Contact() {
                         <FormControl float="right">
                           <Button
                             variant="solid"
-                            bg="#0D74FF"
+                            rounded={"full"}
+                            size={"lg"}
+                            fontWeight={"normal"}
+                            bg="orange.300"
                             color="white"
-                            _hover={{}}
+                            _hover={{ bg: "orange.500" }}
                             type="submit"
                             isLoading={isSubmitting}
                           >
-                            Send Message
+                            Enviar mensaje
                           </Button>
                         </FormControl>
                       </VStack>
